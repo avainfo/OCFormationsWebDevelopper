@@ -59,6 +59,7 @@ a {
     color: var(--main-bg-color)
 }
 
+
 /****** Header ******/
 header {
     display: flex;
@@ -255,6 +256,7 @@ header {
     margin-bottom: auto;
 }
 
+
 /****** Hebergements And Populaires ***********/
 .hebergements-and-populaires {
     display: flex;
@@ -420,6 +422,7 @@ header {
     line-height: normal;
 }
 
+
 /****** Populaires ***********/
 .populaires {
     width: 32%;
@@ -517,6 +520,47 @@ header {
     font-weight: 700;
     line-height: normal;
     margin: auto 19px;
+}
+
+
+/****** footer ******/
+
+footer {
+    display: flex;
+    flex-direction: row;
+    background-color: #F2F2F2;
+    padding: 20px;
+}
+
+footer div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+}
+
+footer div div:nth-child(1) {
+    color: #000;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+footer div div:not(footer div div:nth-child(1)) {
+    color: #000;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1440px) {
+    .cards .card {
+        width: calc((100vw - 250px) / 4);
+    }
 }
 
 /* Le code ci-dessous correspond à la version responsive uniquement */
