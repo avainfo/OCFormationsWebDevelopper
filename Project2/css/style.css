@@ -91,6 +91,170 @@ header {
     border-top: var(--main-color) solid 2px;
 }
 
+
+/****** Info group ******/
+.info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    align-self: stretch;
+    margin-bottom: 35px;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.headline > div:nth-child(1) {
+    color: black;
+    font-family: Raleway;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.headline > p:nth-child(2) {
+    color: black;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 15px;
+}
+
+.search-bar > img {
+    height: 49px;
+}
+
+.loc {
+    color: black;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: auto;
+    height: 100%;
+    border: 0 none;
+    outline: none;
+    padding: 0 24px;
+}
+
+.search {
+    background-color: var(--main-color);
+    color: white;
+    position: relative;
+    border-radius: 0 15px 15px 0;
+    padding: 15px 16px 0;
+}
+
+.search span {
+    color: white;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.search img {
+    height: 17px;
+    display: none;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    gap: 15px;
+}
+
+.filter div:not(.filter div:nth-child(1)) {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.filter div:nth-child(1) {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: black;
+    text-align: center;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.filter a {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    padding-left: 19px;
+    padding-right: 19px;
+    border-radius: 25px;
+    border: 2px solid #D9D9D9;
+    height: 50px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.filter a:hover {
+    background-color: #DEEBFF;
+}
+
+.filter a > img {
+    width: 22px;
+    height: 22px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.item-title {
+    color: #000;
+    font-family: Raleway;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.info > img {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.info > div {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 /****** Hebergements And Populaires ***********/
 .hebergements-and-populaires {
     display: flex;
@@ -104,9 +268,156 @@ header {
     box-sizing: border-box;
 }
 
+
 /****** Hebergements ***********/
 .hebergements {
     width: 65%;
+    padding: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+    border-radius: 15px;
+    background: #F2F2F2;
+}
+
+.hebergements-title {
+    align-self: stretch;
+    color: #000;
+    font-family: Raleway;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.hebergements-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+    margin-top: 30px;
+}
+
+.hebergements-row a {
+    flex: 1;
+}
+
+.hebergements-card {
+    display: flex;
+    padding-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.10);
+}
+
+.hebergements-infos {
+    display: flex;
+    padding: 0 15px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.hebergements-infos h2 {
+    color: #000;
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+}
+
+.hebergements-infos h3 {
+    align-self: stretch;
+    color: #000;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+.hebergements-infos-price span {
+    color: #000;
+    font-family: Raleway;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.hebergements-img {
+    height: 124px;
+    align-self: stretch;
+    border-radius: 20px 20px 0 0;
+    border: 5px solid #FFFFFF;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row;
+    width: 81px;
+    height: 13.25px;
+    align-self: stretch;
+    gap: 2.38px;
+}
+
+.stars div:last-child {
+    color: #F2F2F2;
+}
+
+.star {
+    height: 13.25px;
+    width: 100%;
+}
+
+.card-1 {
+    background: url("../images/hebergements/fred-kleber.jpg") no-repeat;
+    background-size: cover;
+}
+
+.card-2 {
+    background: url("../images/hebergements/febrian-zakaria.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.card-3 {
+    background: url("../images/hebergements/reisetopia.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.card-4 {
+    background: url("../images/hebergements/annie-spratt.jpg") no-repeat;
+    background-size: cover;
+}
+
+.card-5 {
+    background: url("../images/hebergements/marcus-loke.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.card-6 {
+    background: url("../images/hebergements/nicate-lee.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.show-more {
+    padding-top: 30px;
+    align-self: stretch;
+    color: #000;
+    font-family: Raleway;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 /****** Populaires ***********/
@@ -153,8 +464,6 @@ header {
 .populaires-cards .card-rating {
     margin-bottom: 5px;
 }
-
-
 
 
 /* Le code ci-dessous correspond à la version responsive uniquement */
