@@ -513,13 +513,17 @@ header {
     border-radius: 20px 20px 0 0;
 }
 
-.cards .card h2 {
+.cards .card div:nth-child(2) {
+    padding: 0;
+    margin: auto 19px;
+}
+
+.cards .card div h2 {
     font-family: Raleway;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin: auto 19px;
 }
 
 
@@ -611,6 +615,11 @@ footer div div:not(footer div div:nth-child(1)) {
 
     .cards .card img {
         height: 200px;
+    }
+
+    .cards .card div:nth-child(2) {
+        padding: 0;
+        margin: auto 19px;
     }
 }
 
