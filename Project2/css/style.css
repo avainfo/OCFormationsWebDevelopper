@@ -466,6 +466,59 @@ header {
 }
 
 
+/****** Activities ******/
+
+.activities {
+    padding: 30px;
+}
+
+.activities-title {
+    color: #000;
+    font-family: Raleway;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cards {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.cards .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 439px;
+    padding: 0;
+    border-radius: 20px;
+    width: calc(1190px / 4);
+}
+
+.cards .card a {
+    width: calc(1190px / 4);
+
+}
+
+.cards .card img {
+    object-fit: cover;
+    height: 380px;
+    border-radius: 20px 20px 0 0;
+}
+
+.cards .card h2 {
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: auto 19px;
+}
+
 /* Le code ci-dessous correspond à la version responsive uniquement */
 
 /****** Media queries ***********/
