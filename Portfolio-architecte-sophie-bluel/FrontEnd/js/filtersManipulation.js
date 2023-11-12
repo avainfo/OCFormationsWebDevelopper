@@ -1,8 +1,6 @@
 async function loadFilters() {
     let filters = document.getElementById("filters");
-    let request = await fetch('http://localhost:5678/api/categories', {
-        method: "GET" // default, so we can ignore
-    });
+    let request = await fetch('http://localhost:5678/api/categories');
 
     let categories = ""
     await request.text().then((v) => {
@@ -17,11 +15,7 @@ async function loadFilters() {
 
     for(let cat of cats) {
         filters.appendChild(createFilter(cat));
-        console.log(cat);
     }
-
-
-    console.log(cats)
 
     setActiveFilter(0);
 
