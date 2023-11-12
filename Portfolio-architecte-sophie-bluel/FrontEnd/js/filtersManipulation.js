@@ -20,7 +20,10 @@ async function loadFilters() {
     setActiveFilter(0);
 
     for(let i = 0; i < filters.children.length; i++) {
-        filters.children[i].onclick = () => changeFilter(i)
+        filters.children[i].onclick = () => {
+            changeFilter(i);
+            filterFigures(i);
+        }
     }
 }
 
