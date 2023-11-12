@@ -1,0 +1,42 @@
+#filters {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    margin: 50px auto;
+    height: 39px;
+}
+
+#filters div {
+    height: 37px;
+    min-width: 100px;
+    background-color: white;
+    border: 1px solid #1D6154;
+    border-radius: 20px;
+    display: flex;
+    padding: 0 15px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+#filters p {
+    color: #1D6154;
+    text-align: center;
+    font-family: Syne;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: auto;
+    transition-duration: 0.2s;
+}
+
+#filters .active {
+    background-color: #1D6154;
+}
+
+#filters .active p {
+    color: white;
+}
