@@ -1,4 +1,4 @@
-async function load() {
+async function loadFilters() {
     let filters = document.getElementById("filters");
     let request = await fetch('http://localhost:5678/api/categories', {
         method: "GET" // default, so we can ignore
