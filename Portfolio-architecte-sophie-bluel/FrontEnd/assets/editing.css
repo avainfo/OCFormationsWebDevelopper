@@ -57,6 +57,7 @@
 #portfolio i{
     font-size: 150%;
     margin: auto 0;
+    cursor: pointer;
 }
 
 #portfolio h3 {
@@ -68,4 +69,5 @@
     font-weight: 400;
     line-height: normal;
     margin: auto 0;
+    cursor: pointer;
 }
