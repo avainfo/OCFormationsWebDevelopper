@@ -1,0 +1,89 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFEF8;
+}
+
+header {
+    width: 100%;
+    max-width: 1140px;
+    margin: 50px auto;
+    justify-content: space-between;
+}
+
+main {
+    width: calc(100vw / 3.7);
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+form h1 {
+    color: #1D6154;
+    text-align: center;
+    font-family: Syne;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+form input:not(input[type="button"]) {
+    border: none;
+    outline: none;
+    height: 50px;
+    padding: 0 20px;
+    box-shadow: 0 5px 15px rgba(33, 33, 33, .1);
+    color: #3D3D3D;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+form input[type="button"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    margin: 0 auto;
+    width: calc(100vw / 8);
+    box-shadow: 0 5px 15px rgba(33, 33, 33, .1);
+    cursor: pointer;
+    color: white !important;
+    background-color: #1D6154;
+    border-radius: 100px;
+}
+
+form a {
+    text-align: center;
+    color: #3D3D3D;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+body > div {
+    height: 20vh;
+}
+
+footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px 0;
+}
