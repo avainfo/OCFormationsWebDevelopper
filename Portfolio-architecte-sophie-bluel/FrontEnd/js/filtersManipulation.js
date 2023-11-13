@@ -1,29 +1,33 @@
 async function loadFilters() {
     let filters = document.getElementById("filters");
-    let request = await fetch('http://localhost:5678/api/categories');
+    if(sessionStorage.getItem("logged") !== "1") {
+        let request = await fetch('http://localhost:5678/api/categories');
 
-    let categories = ""
-    await request.text().then((v) => {
-        categories = JSON.parse(v);
-    });
+        let categories = ""
+        await request.text().then((v) => {
+            categories = JSON.parse(v);
+        });
 
-    let cats = ["Tous"]
+        let cats = ["Tous"]
 
-    for(let i = 0; i < categories.length; i++) {
-        cats.push(categories[i]["name"]);
-    }
-
-    for(let cat of cats) {
-        filters.appendChild(createFilter(cat));
-    }
-
-    setActiveFilter(0);
-
-    for(let i = 0; i < filters.children.length; i++) {
-        filters.children[i].onclick = () => {
-            changeFilter(i);
-            filterFigures(i);
+        for(let i = 0; i < categories.length; i++) {
+            cats.push(categories[i]["name"]);
         }
+
+        for(let cat of cats) {
+            filters.appendChild(createFilter(cat));
+        }
+
+        setActiveFilter(0);
+
+        for(let i = 0; i < filters.children.length; i++) {
+            filters.children[i].onclick = () => {
+                changeFilter(i);
+                filterFigures(i);
+            }
+        }
+    } else {
+        filters.style.display = "none";
     }
 }
 
