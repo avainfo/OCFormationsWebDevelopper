@@ -8,14 +8,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="assets/filters.css">
+    <link rel="stylesheet" href="assets/editing.css">
+    <link rel="stylesheet" href="assets/dialog.css">
     <script src="js/manipulationManagers.js"></script>
     <script src="js/filtersManipulation.js"></script>
     <script src="js/galleryManipulation.js"></script>
+    <script src="js/editing.js"></script>
 </head>
 <body onload="load()">
+<div class="edition">
+    <div>
+        <i class="fa-regular fa-pen-to-square" onclick="closeEditing()"></i>
+        <h2 onclick="closeEditing()">Mode édition</h2>
+    </div>
+</div>
 <header>
     <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
     <nav>
@@ -44,7 +54,14 @@
         </article>
     </section>
     <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div>
+            <div class="spacer"></div>
+            <h2>Mes Projets</h2>
+            <div class="edit">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <h3>modifier</h3>
+            </div>
+        </div>
         <div id="filters"></div>
         <div class="gallery"></div>
     </section>
@@ -70,5 +87,6 @@
         </ul>
     </nav>
 </footer>
+
 </body>
 </html>

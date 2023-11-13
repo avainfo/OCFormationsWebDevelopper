@@ -1,0 +1,71 @@
+.edition {
+    height: 60px;
+    background-color: black;
+    /*display: flex;*/
+    justify-content: center;
+    display: none;
+}
+
+.edition h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.edition div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    cursor: pointer;
+    margin: auto 0;
+}
+
+.edition div i {
+    color: white;
+    font-size: 150%;
+}
+
+#portfolio .spacer {
+    flex: 1;
+}
+
+#portfolio div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#portfolio div h2 {
+    margin: auto 0;
+}
+
+.edit {
+    flex: 1;
+    display: none;
+    /*display: flex;*/
+    height: min-content;
+    margin: auto 0;
+    gap: 10px;
+    width: 100%;
+}
+
+#portfolio i{
+    font-size: 150%;
+    margin: auto 0;
+}
+
+#portfolio h3 {
+    color: #000;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: auto 0;
+}
