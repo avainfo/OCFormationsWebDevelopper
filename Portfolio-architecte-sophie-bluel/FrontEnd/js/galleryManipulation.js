@@ -19,6 +19,18 @@ async function getWorks() {
     }
 }
 
+async function getInstantWorks() {
+    let request = await fetch("http://localhost:5678/api/works");
+    let response = await request.text();
+    let jsonResp = JSON.parse(response);
+    let arr = {};
+    for(const k of jsonResp) {
+        arr[k["id"]] = k["imageUrl"];
+    }
+    return arr;
+}
+
+
 function createFigure(name, imgUrl) {
     let fig = document.createElement("figure");
     let figImg = document.createElement("img");

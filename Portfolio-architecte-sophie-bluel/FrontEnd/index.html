@@ -18,6 +18,7 @@
     <script src="js/filtersManipulation.js"></script>
     <script src="js/galleryManipulation.js"></script>
     <script src="js/editing.js"></script>
+    <script src="js/dialog.js"></script>
 </head>
 <body onload="load()">
 <div class="edition">
@@ -58,8 +59,8 @@
             <div class="spacer"></div>
             <h2>Mes Projets</h2>
             <div class="edit">
-                <i class="fa-regular fa-pen-to-square"></i>
-                <h3>modifier</h3>
+                <i class="fa-regular fa-pen-to-square" onclick="openDialog()"></i>
+                <h3 onclick="openDialog()">modifier</h3>
             </div>
         </div>
         <div id="filters"></div>
@@ -87,6 +88,47 @@
         </ul>
     </nav>
 </footer>
-
+<dialog>
+    <div>
+        <form method="dialog">
+            <button>✖</button>
+        </form>
+        <p>Galerie Photo</p>
+    </div>
+    <div class="diag-works">
+<!--        <article style="grid-column: 1;grid-row: 1;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 2;grid-row: 1;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 3;grid-row: 1;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 4;grid-row: 1;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 5;grid-row: 1;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 1;grid-row: 2;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+<!--        <article style="grid-column: 2;grid-row: 2;">-->
+<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
+<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
+<!--        </article>-->
+    </div>
+    <div>
+        <div class="spacer"></div>
+        <button type="button" onclick="console.log('test')">Ajouter une photo</button>
+    </div>
+</dialog>
 </body>
 </html>

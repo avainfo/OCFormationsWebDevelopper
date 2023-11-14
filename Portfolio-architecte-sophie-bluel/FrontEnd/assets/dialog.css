@@ -1,0 +1,96 @@
+dialog[open] {
+    top: 20vh;
+    height: 60vh;
+    width: 40vw;
+    position: absolute !important;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+::backdrop {
+    background: rgba(0, 0, 0, 0.30);
+}
+
+dialog button {
+    float: right;
+    border: none;
+    background-color: transparent;
+    font-size: 1.7em;
+    cursor: pointer;
+}
+
+dialog p {
+    height: 10vh;
+    color: #000;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10vh;
+}
+
+.diag-works {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-auto-rows: minmax(auto, auto);
+    grid-row-gap: 30px;
+    grid-column-gap: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0 5vw auto;
+}
+
+.diag-works article {
+    position: relative;
+}
+
+.diag-works article img {
+    width: 100%;
+}
+
+.diag-works article i {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 5px;
+    background-color: black;
+    max-width: calc(35vw / 3);
+    width: calc(35vw / 20);
+    height: calc(35vw / 20);
+    line-height: calc(35vw / 20);
+    text-align: center;
+    cursor: pointer;
+}
+
+dialog div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog .spacer {
+    height: 1px;
+    margin: 0 5vw 4vh;
+    background: #B3B3B3;
+}
+
+dialog button[type="button"] {
+    background-color: #1D6154;
+    bottom: 0;
+    margin: auto auto 3vh;
+    color: #FFF;
+    text-align: center;
+    font-family: Syne;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 40px;
+    width: calc(40vw / 2.5);
+    border-radius: 100px;
+}
