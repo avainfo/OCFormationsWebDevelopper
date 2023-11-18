@@ -1,0 +1,131 @@
+dialog section:last-child > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    margin: 10px 30px 0 30px;
+}
+
+dialog section:last-child > div:first-child i {
+    font-size: 1.7em;
+}
+
+dialog section:last-child form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+
+dialog section form p {
+    height: 10vh;
+    color: #000;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10vh;
+}
+
+.input {
+    width: auto;
+    height: 150px;
+    border-radius: 3px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 6px;
+    background: #E8F1F6 no-repeat center;
+    background-size: contain;
+}
+
+dialog i {
+    cursor: pointer;
+}
+
+dialog section form .input i {
+    font-size: 50px;
+}
+
+.input h3 {
+    height: 36px;
+    background-color: #CBD6DC;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 50px;
+    color: #306685;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.input h4 {
+    color: #444;
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+form label {
+    margin: 20px 5vw 10px;
+}
+
+form input, form select {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border: none;
+    outline: none;
+    height: 35px;
+    background: #FFF;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+form .spacer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+form button[type="button"] {
+    height: 36px!important;
+    border-radius: 60px;
+}
+
+form button[type="button"][disabled] {
+    height: 36px!important;
+    border-radius: 60px;
+    background: #A7A7A7!important;
+}
+
+dialog section:last-child button[type="button"] {
+    background-color: #1D6154;
+    bottom: 0;
+    margin: auto auto 3vh;
+    color: #FFF;
+    text-align: center;
+    font-family: Syne;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 40px;
+    width: calc(40vw / 2.5);
+    border-radius: 100px;
+}

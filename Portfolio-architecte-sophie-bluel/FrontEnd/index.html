@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="assets/filters.css">
     <link rel="stylesheet" href="assets/editing.css">
-    <link rel="stylesheet" href="assets/dialog.css">
+    <link rel="stylesheet" href="assets/dialog1.css">
+    <link rel="stylesheet" href="assets/dialog2.css">
     <script src="js/manipulationManagers.js"></script>
     <script src="js/filtersManipulation.js"></script>
     <script src="js/galleryManipulation.js"></script>
@@ -89,46 +90,43 @@
     </nav>
 </footer>
 <dialog>
-    <div>
-        <form method="dialog">
-            <button>✖</button>
+    <section>
+        <div>
+            <button onclick="closeDialog()">✖</button>
+            <p>Galerie Photo</p>
+        </div>
+        <div class="diag-works">
+        </div>
+        <div class="diag-footer">
+            <div class="spacer"></div>
+            <button type="button" onclick="showAddingPage()">Ajouter une photo</button>
+        </div>
+    </section>
+    <section>
+        <div>
+            <i class="fa-solid fa-arrow-left" style="color: #000000;" onclick="showDeletingPage()"></i>
+            <p>Ajout Photo</p>
+            <button onclick="closeDialog()">✖</button>
+        </div>
+        <form>
+            <div class="input" onclick="openInput()">
+                <input type="file" name="" id="file" accept="image/png, image/jpeg" onchange="updateImage(this)">
+                <i class="fa-regular fa-image" style="color: #b9c5cc;"></i>
+                <h3>+ Ajouter photo</h3>
+                <h4>jpg, png : 4mo max</h4>
+            </div>
+            <label for="title">Titre</label>
+            <input type="text" id="title" oninput="updateDialogButton()">
+            <label for="cat">Catégorie</label>
+            <select name="" id="cat" onchange="updateDialogButton()">
+                <option value=""></option>
+            </select>
+
+            <div class="spacer"></div>
+
+            <button type="button" disabled>Valider</button>
         </form>
-        <p>Galerie Photo</p>
-    </div>
-    <div class="diag-works">
-<!--        <article style="grid-column: 1;grid-row: 1;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 2;grid-row: 1;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 3;grid-row: 1;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 4;grid-row: 1;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 5;grid-row: 1;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 1;grid-row: 2;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-<!--        <article style="grid-column: 2;grid-row: 2;">-->
-<!--            <img src="assets/images/abajour-tahina.png" alt="">-->
-<!--            <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>-->
-<!--        </article>-->
-    </div>
-    <div>
-        <div class="spacer"></div>
-        <button type="button" onclick="console.log('test')">Ajouter une photo</button>
-    </div>
+    </section>
 </dialog>
 </body>
 </html>
