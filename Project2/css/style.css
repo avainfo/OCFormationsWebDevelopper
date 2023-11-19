@@ -226,6 +226,11 @@ header {
     margin-bottom: auto;
 }
 
+.card h2 {
+    font-size: 16px;
+    margin: auto 20px;
+}
+
 .item-title {
     color: #000;
     font-family: Raleway;
@@ -261,6 +266,7 @@ header {
 .hebergements-and-populaires {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
 }
 
 .hebergements-and-populaires section {
@@ -578,7 +584,7 @@ footer div div:not(footer div div:nth-child(1)) {
     }
 
     .hebergements {
-        width: 100%;
+        width: auto;
     }
 
     .populaires {
@@ -620,6 +626,15 @@ footer div div:not(footer div div:nth-child(1)) {
     .cards .card div:nth-child(2) {
         padding: 0;
         margin: auto 19px;
+    }
+
+    .filter {
+        flex-direction: column;
+        margin-bottom: 35px;
+    }
+
+    .filter div:first-child {
+        text-align: start;
     }
 }
 
@@ -749,7 +764,7 @@ footer div div:not(footer div div:nth-child(1)) {
     }
 
     .hebergements-card {
-        width: calc(100vw - 40px);
+        width: calc(100vw - 60px);
     }
 
     .hebergements-row {
@@ -819,6 +834,16 @@ footer div div:not(footer div div:nth-child(1)) {
         flex-direction: column;
         padding: 30px;
         gap: 50px;
+    }
+
+    .filter {
+        flex-direction: column;
+        margin-bottom: 0px;
+    }
+
+    .card h2 {
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
 }
