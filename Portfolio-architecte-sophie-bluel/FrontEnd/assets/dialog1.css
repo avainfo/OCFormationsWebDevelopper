@@ -1,5 +1,4 @@
 dialog[open] {
-    top: 20vh;
     height: 60vh;
     width: 40vw;
     position: fixed !important;
@@ -18,6 +17,9 @@ dialog[open] {
 
 dialog section {
     margin: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 dialog button {
@@ -48,6 +50,7 @@ dialog p {
     overflow-x: hidden;
     overflow-y: auto;
     margin: 0 5vw auto;
+    height: 100%;
 }
 
 .diag-works article {

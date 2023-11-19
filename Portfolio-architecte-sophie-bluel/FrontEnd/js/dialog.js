@@ -47,7 +47,7 @@ function showAddingPage() {
 
 async function showDeletingPage() {
     document.querySelector("dialog").children[1].style.display = "none";
-    document.querySelector("dialog").children[0].style.display = "unset";
+    document.querySelector("dialog").children[0].style.display = "flex";
     let categories = "";
     await fetch('http://localhost:5678/api/categories')
         .then(async(v) => {
