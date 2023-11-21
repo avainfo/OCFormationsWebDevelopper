@@ -89,10 +89,10 @@
         </ul>
     </nav>
 </footer>
-<dialog>
+<dialog onclose="closeDialog()">
     <section>
         <div>
-            <button onclick="closeDialog()">✖</button>
+            <button onclick="document.querySelector('dialog').close()">✖</button>
             <p>Galerie Photo</p>
         </div>
         <div class="diag-works">

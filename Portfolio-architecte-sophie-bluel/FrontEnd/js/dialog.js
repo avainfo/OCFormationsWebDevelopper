@@ -3,17 +3,19 @@ async function openDialog() {
     showDeletingPage();
     dialog.showModal();
     const works = await getInstantWorks();
-    for(const w in works) {
-        document.querySelector(".diag-works").appendChild(createArticles(works[w], w));
+    let i = 0;
+    for (const w in works) {
+        document.querySelector(".diag-works").appendChild(createArticles(works[w], i, w));
+        i++;
     }
-    dialog.addEventListener('click', function(event) {
-        if(event.target === dialog) {
+    dialog.addEventListener('click', function (event) {
+        if (event.target === dialog) {
             dialog.close();
         }
     });
 }
 
-function createArticles(imageUrl, index) {
+function createArticles(imageUrl, index, w) {
     let article = document.createElement("article");
     let img = document.createElement("img");
     let i = document.createElement("i");
@@ -25,6 +27,7 @@ function createArticles(imageUrl, index) {
     i.classList.add("fa-solid")
     i.classList.add("fa-trash-can")
     i.style.color = "white"
+    i.onclick = () => deleteWork(w, index);
 
     article.appendChild(img);
     article.appendChild(i);
@@ -50,10 +53,10 @@ async function showDeletingPage() {
     document.querySelector("dialog").children[0].style.display = "flex";
     let categories = "";
     await fetch('http://localhost:5678/api/categories')
-        .then(async(v) => {
+        .then(async (v) => {
             categories = JSON.parse(await v.text());
         });
-    for(const key of categories) {
+    for (const key of categories) {
         const option = document.createElement("option");
         option.setAttribute("value", key["name"]);
         option.textContent = key["name"];
@@ -66,16 +69,16 @@ function openInput() {
 }
 
 function updateImage(e) {
-    if(e.files.length === 1) {
+    if (e.files.length === 1) {
         const childrens = e.parentElement.children;
-        for(const children of childrens) {
+        for (const children of childrens) {
             console.log(children)
             children.style.display = "none"
         }
         const [file] = e.files
         if (file) {
             console.log(URL.createObjectURL(file))
-            e.parentElement.style.backgroundImage = "url(" + URL.createObjectURL(file) +")"
+            e.parentElement.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")"
         }
         updateDialogButton()
     }
@@ -86,10 +89,32 @@ function updateDialogButton() {
     const title = document.getElementById("title").value !== "";
     const cat = document.getElementById("cat").value !== "";
 
-    if(input + title + cat === 3) {
+    if (input + title + cat === 3) {
         const dialog = document.getElementsByTagName("dialog")[0];
         const form = dialog.children[1].children[1];
         const button = form.getElementsByTagName("button")[0];
         button.disabled = false;
     }
+}
+
+async function deleteWork(w, index) {
+    const request = await fetch("http://localhost:5678/api/works/" + w, {
+        method: "DELETE",
+        headers: {
+            'Accept': '*/*',
+            'Authorization': "Bearer " + document.cookie.replace("token=", "")
+        },
+
+    });
+
+
+    document.getElementsByClassName("diag-works")[0].innerHTML = ""
+    console.log(request.statusCode)
+    const works = await getInstantWorks();
+    let i = 0;
+    for (const w in works) {
+        document.querySelector(".diag-works").appendChild(createArticles(works[w], i, w));
+        i++;
+    }
+    document.getElementsByClassName("gallery")[0].children[index].innerHTML = "";
 }
