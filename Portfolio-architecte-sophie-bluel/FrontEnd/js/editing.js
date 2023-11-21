@@ -1,5 +1,5 @@
 function checkMode() {
-    if(sessionStorage.getItem("logged") === "1") {
+    if(document.cookie.startsWith("token")) {
         document.querySelector(".edition").style.display = "flex";
         document.querySelector(".edit").style.display = "flex";
         document.querySelector(".spacer").style.flex = "1";
