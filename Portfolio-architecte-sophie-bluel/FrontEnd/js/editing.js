@@ -15,5 +15,6 @@ function closeEditing() {
     document.querySelector(".edit").style.display = "none";
     document.querySelector(".spacer").style.flex = "0";
     document.querySelector("#filters").style.display = "flex";
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
     loadFilters();
 }
