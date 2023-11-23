@@ -3,3 +3,5 @@ TODO:
 - #002: var -> const/let
 - #003: add style for a in footer of login page
 - #004: add a popup for bad login
+- #005: add redirection on click on nav bar link
+- #006: fix categories choices in dialog
