@@ -16,9 +16,9 @@ async function openDialog() {
 }
 
 function createArticles(imageUrl, index, w) {
-    let article = document.createElement("article");
-    let img = document.createElement("img");
-    let i = document.createElement("i");
+    const article = document.createElement("article");
+    const img = document.createElement("img");
+    const i = document.createElement("i");
 
     article.style.gridArea = getPos(index)
 
@@ -51,7 +51,7 @@ function showAddingPage() {
 async function showDeletingPage() {
     document.querySelector("dialog").children[1].style.display = "none";
     document.querySelector("dialog").children[0].style.display = "flex";
-    let categories = await fetch('http://localhost:5678/api/categories')
+    const categories = await fetch('http://localhost:5678/api/categories')
         .then((resp) => resp.text())
         .then((json) => JSON.parse(json));
     for (const key of categories) {

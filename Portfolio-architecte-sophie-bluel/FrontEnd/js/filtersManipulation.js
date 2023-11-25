@@ -1,14 +1,14 @@
 async function loadFilters() {
-    let filters = document.getElementById("filters");
+    const filters = document.getElementById("filters");
     if(sessionStorage.getItem("logged") !== "1") {
-        let request = await fetch('http://localhost:5678/api/categories');
+        const request = await fetch('http://localhost:5678/api/categories');
 
         let categories = ""
         await request.text().then((v) => {
             categories = JSON.parse(v);
         });
 
-        let cats = ["Tous"]
+        const cats = ["Tous"]
 
         for(let i = 0; i < categories.length; i++) {
             cats.push(categories[i]["name"]);
@@ -40,7 +40,7 @@ function createFilter(name) {
 }
 
 function changeFilter(i) {
-    let filters = document.getElementById("filters").children;
+    const filters = document.getElementById("filters").children;
     if(i !== getActiveFilter()) {
         filters[getActiveFilter()].classList.remove("active");
         setActiveFilter(i)
@@ -48,7 +48,7 @@ function changeFilter(i) {
 }
 
 function getActiveFilter() {
-    let filters = document.getElementById("filters").children;
+    const filters = document.getElementById("filters").children;
     for(let i = 0; i < filters.length; i++) {
         if(filters[i].classList.contains("active")) {
             return i;
@@ -57,6 +57,6 @@ function getActiveFilter() {
 }
 
 function setActiveFilter(i) {
-    let filters = document.getElementById("filters").children;
+    const filters = document.getElementById("filters").children;
     filters[i].classList.add("active");
 }

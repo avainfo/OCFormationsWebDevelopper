@@ -1,5 +1,5 @@
-let figures = {};
-let actualFigures = []
+const figures = {};
+const actualFigures = []
 
 
 function loadWorks() {
@@ -7,9 +7,9 @@ function loadWorks() {
 }
 
 async function getWorks() {
-    let request = await fetch("http://localhost:5678/api/works");
-    let response = await request.text();
-    let jsonResp = JSON.parse(response);
+    const request = await fetch("http://localhost:5678/api/works");
+    const response = await request.text();
+    const jsonResp = JSON.parse(response);
     for(const k of jsonResp) {
         document.querySelector(".gallery").appendChild(createFigure(k["title"], k["imageUrl"]))
         figures[k["id"]] = k["categoryId"];
@@ -20,10 +20,10 @@ async function getWorks() {
 }
 
 async function getInstantWorks() {
-    let request = await fetch("http://localhost:5678/api/works");
-    let response = await request.text();
-    let jsonResp = JSON.parse(response);
-    let arr = {};
+    const request = await fetch("http://localhost:5678/api/works");
+    const response = await request.text();
+    const jsonResp = JSON.parse(response);
+    const arr = {};
     for(const k of jsonResp) {
         arr[k["id"]] = k["imageUrl"];
     }
@@ -50,10 +50,10 @@ function createFigure(name, imgUrl) {
 }
 
 async function filterFigures(i) {
-    var gallery = document.querySelector(".gallery").children;
+    const gallery = document.querySelector(".gallery").children;
 
 
-    for(var figure in figures) {
+    for(const figure in figures) {
         if(i !== 0) {
             console.log(figures[figure])
             if(figures[figure] !== i) {
