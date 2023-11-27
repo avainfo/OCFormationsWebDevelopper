@@ -1,5 +1,5 @@
-function load() {
-    loadFilters();
-    loadWorks();
+async function load() {
+    await loadFilters();
+    await loadWorks();
     checkMode();
 }
