@@ -2,12 +2,7 @@ async function openDialog() {
     const dialog = document.getElementsByTagName("dialog")[0];
     showDeletingPage();
     dialog.showModal();
-    const works = await getInstantWorks();
-    let i = 0;
-    for (const w in works) {
-        document.querySelector(".diag-works").appendChild(createArticles(works[w], i, w));
-        i++;
-    }
+    await showArticles();
     dialog.addEventListener('click', function (event) {
         if (event.target === dialog) {
             dialog.close();
@@ -15,19 +10,31 @@ async function openDialog() {
     });
 }
 
-function createArticles(imageUrl, index, w) {
+async function showArticles() {
+    const works = await getInstantWorks();
+    let dialogID = 0;
+    let posID = 1;
+    for (const workID in works) {
+        document.querySelector(".diag-works").appendChild(createArticles(works[workID], dialogID, workID, posID));
+        dialogID++;
+        posID++;
+        if (posID % 5 === 0) posID++
+    }
+}
+
+function createArticles(imageUrl, dialogID, workID, posID) {
     const article = document.createElement("article");
     const img = document.createElement("img");
     const i = document.createElement("i");
 
-    article.style.gridArea = getPos(index)
+    article.style.gridArea = getPos(posID)
 
     img.src = imageUrl
 
     i.classList.add("fa-solid")
     i.classList.add("fa-trash-can")
     i.style.color = "white"
-    i.onclick = () => deleteWork(w, index);
+    i.onclick = () => deleteWork(workID, dialogID);
 
     article.appendChild(img);
     article.appendChild(i);
@@ -43,14 +50,11 @@ function closeDialog() {
     document.querySelector("dialog").close()
 }
 
-function showAddingPage() {
+async function showAddingPage() {
     document.querySelector("dialog").children[0].style.display = "none";
     document.querySelector("dialog").children[1].style.display = "unset";
-}
 
-async function showDeletingPage() {
-    document.querySelector("dialog").children[1].style.display = "none";
-    document.querySelector("dialog").children[0].style.display = "flex";
+
     const categories = await fetch('http://localhost:5678/api/categories')
         .then((resp) => resp.text())
         .then((json) => JSON.parse(json));
@@ -58,8 +62,14 @@ async function showDeletingPage() {
         const option = document.createElement("option");
         option.setAttribute("value", key["name"]);
         option.textContent = key["name"];
-        document.getElementsByTagName("select")[0].appendChild(option);
+        document.getElementById("cat").appendChild(option);
     }
+}
+
+function showDeletingPage() {
+    document.querySelector("dialog").children[1].style.display = "none";
+    document.querySelector("dialog").children[0].style.display = "flex";
+
 }
 
 function openInput() {
@@ -95,24 +105,52 @@ function updateDialogButton() {
     }
 }
 
-async function deleteWork(w, index) {
-    const request = await fetch("http://localhost:5678/api/works/" + w, {
+async function deleteWork(workID, dialogID) {
+    console.log(workID, dialogID)
+    const request = await fetch("http://localhost:5678/api/works/" + workID, {
         method: "DELETE",
         headers: {
             'Accept': '*/*',
             'Authorization': "Bearer " + document.cookie.replace("token=", "")
         },
+    });
+    document.getElementsByClassName("diag-works")[0].children[dialogID].innerHTML = ""
+    console.log(request.statusCode)
+    await showArticles();
+    document.getElementsByClassName("gallery")[0].children[dialogID].remove();
+    document.getElementsByTagName("dialog")[0].close();
+}
 
+async function addWork() {
+    const imageInput = document.getElementsByClassName("input")[0].children[0];
+    const image = imageInput.files[0];
+    const title = document.getElementById("title").value;
+    const categories = document.getElementById("cat").value;
+    const data = new FormData();
+
+    data.append('image', image);
+    data.append("title", title);
+    data.append("category", ["O", "A", "H"].indexOf(categories[0]) + 1);
+
+    const token = document.cookie.replace("token=", "");
+
+    const request = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            'Authorization': 'Bearer ' + token,
+        },
+        body: data,
     });
 
+    const response = await request.json();
+    console.log(response);
 
     document.getElementsByClassName("diag-works")[0].innerHTML = ""
     console.log(request.statusCode)
     const works = await getInstantWorks();
-    let i = 0;
-    for (const w in works) {
-        document.querySelector(".diag-works").appendChild(createArticles(works[w], i, w));
-        i++;
-    }
-    document.getElementsByClassName("gallery")[0].children[index].innerHTML = "";
+
+    const imageUrl = works[Object.keys(works)[Object.keys(works).length - 1]];
+
+    document.getElementsByClassName("gallery")[0].appendChild(createFigure(title, imageUrl, 1));
+    document.getElementsByTagName("dialog")[0].close();
 }

@@ -2,15 +2,15 @@ const figures = {};
 const actualFigures = []
 
 
-function loadWorks() {
-    getWorks();
+async function loadWorks() {
+    await getWorks();
 }
 
 async function getWorks() {
     const request = await fetch("http://localhost:5678/api/works");
     const response = await request.text();
     const jsonResp = JSON.parse(response);
-    for(const k of jsonResp) {
+    for (const k of jsonResp) {
         document.querySelector(".gallery").appendChild(createFigure(k["title"], k["imageUrl"]))
         figures[k["id"]] = k["categoryId"];
         actualFigures.push(k["id"]);
@@ -24,14 +24,14 @@ async function getInstantWorks() {
     const response = await request.text();
     const jsonResp = JSON.parse(response);
     const arr = {};
-    for(const k of jsonResp) {
+    for (const k of jsonResp) {
         arr[k["id"]] = k["imageUrl"];
     }
     return arr;
 }
 
 
-function createFigure(name, imgUrl) {
+function createFigure(name, imgUrl, opacity = 0) {
     let fig = document.createElement("figure");
     let figImg = document.createElement("img");
     let figCaption = document.createElement("figcaption");
@@ -43,7 +43,7 @@ function createFigure(name, imgUrl) {
 
     fig.appendChild(figImg);
     fig.appendChild(figCaption);
-    fig.style.opacity = "0";
+    fig.style.opacity = opacity.toString();
     fig.style.transitionDuration = "0.2s";
 
     return fig;
@@ -53,10 +53,10 @@ async function filterFigures(i) {
     const gallery = document.querySelector(".gallery").children;
 
 
-    for(const figure in figures) {
-        if(i !== 0) {
+    for (const figure in figures) {
+        if (i !== 0) {
             console.log(figures[figure])
-            if(figures[figure] !== i) {
+            if (figures[figure] !== i) {
                 console.log(figure - 1);
                 console.log(gallery[figure - 1]);
                 gallery[figure - 1].style.display = "none";
