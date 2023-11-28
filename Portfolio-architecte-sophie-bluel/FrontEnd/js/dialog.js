@@ -1,5 +1,3 @@
-
-
 async function openDialog() {
     showDeletingPage();
     dialog.showModal();
