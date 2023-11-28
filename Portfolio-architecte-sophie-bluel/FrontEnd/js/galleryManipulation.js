@@ -1,7 +1,3 @@
-const figures = {};
-const actualFigures = []
-
-
 async function loadWorks() {
     await getWorks();
 }
@@ -12,8 +8,6 @@ async function getWorks() {
     const jsonResp = JSON.parse(response);
     for (const k of jsonResp) {
         document.querySelector(".gallery").appendChild(createFigure(k["title"], k["imageUrl"]))
-        figures[k["id"]] = k["categoryId"];
-        actualFigures.push(k["id"]);
         await new Promise(r => setTimeout(r, 100));
         document.querySelector(".gallery figure:last-child").style.opacity = "1";
     }
@@ -49,22 +43,69 @@ function createFigure(name, imgUrl, opacity = 0) {
     return fig;
 }
 
-async function filterFigures(i) {
-    const gallery = document.querySelector(".gallery").children;
-
-
-    for (const figure in figures) {
-        if (i !== 0) {
-            console.log(figures[figure])
-            if (figures[figure] !== i) {
-                console.log(figure - 1);
-                console.log(gallery[figure - 1]);
-                gallery[figure - 1].style.display = "none";
-            } else {
-                gallery[figure - 1].style.display = "unset";
-            }
+async function filterFigures(categoryID) {
+    const galleryChildren = document.querySelector(".gallery").children;
+    const works = await fetch("http://localhost:5678/api/works")
+        .then(response => response.text())
+        .then((json) => JSON.parse(json));
+    let figureID = 0;
+    for (let workID in works) {
+        if (categoryID !== 0 && works[workID]['categoryId'] !== categoryID) {
+            galleryChildren[figureID].style.display = "none"
+            console.log(works[workID]);
         } else {
-            gallery[figure - 1].style.display = "unset";
+            galleryChildren[figureID].style.display = "block"
         }
+        figureID++;
     }
+    console.log(works)
+}
+
+async function addWork() {
+    const imageInput = document.getElementsByClassName("input")[0].children[0];
+    const image = imageInput.files[0];
+    const title = document.getElementById("title").value;
+    const categories = document.getElementById("cat").value;
+    const data = new FormData();
+
+    data.append('image', image);
+    data.append("title", title);
+    data.append("category", ["O", "A", "H"].indexOf(categories[0]) + 1);
+
+    const token = document.cookie.replace("token=", "");
+
+    const request = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            'Authorization': 'Bearer ' + token,
+        },
+        body: data,
+    });
+
+    const response = await request.json();
+    console.log(response);
+
+    document.getElementsByClassName("diag-works")[0].innerHTML = ""
+    console.log(request.statusCode)
+    const works = await getInstantWorks();
+
+    const imageUrl = works[Object.keys(works)[Object.keys(works).length - 1]];
+
+    document.getElementsByClassName("gallery")[0].appendChild(createFigure(title, imageUrl, 1));
+    document.getElementsByTagName("dialog")[0].close();
+}
+
+async function deleteWork(workID, dialogID) {
+    console.log(workID, dialogID)
+    const request = await fetch("http://localhost:5678/api/works/" + workID, {
+        method: "DELETE",
+        headers: {
+            'Accept': '*/*',
+            'Authorization': "Bearer " + document.cookie.replace("token=", "")
+        },
+    });
+    document.getElementsByClassName("diag-works")[0].children[dialogID].innerHTML = ""
+    await showArticles();
+    document.getElementsByClassName("gallery")[0].children[dialogID].remove();
+    document.getElementsByTagName("dialog")[0].close();
 }
