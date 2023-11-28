@@ -52,13 +52,11 @@ async function filterFigures(categoryID) {
     for (let workID in works) {
         if (categoryID !== 0 && works[workID]['categoryId'] !== categoryID) {
             galleryChildren[figureID].style.display = "none"
-            console.log(works[workID]);
         } else {
             galleryChildren[figureID].style.display = "block"
         }
         figureID++;
     }
-    console.log(works)
 }
 
 async function addWork() {
@@ -83,10 +81,8 @@ async function addWork() {
     });
 
     const response = await request.json();
-    console.log(response);
 
     document.getElementsByClassName("diag-works")[0].innerHTML = ""
-    console.log(request.statusCode)
     const works = await getInstantWorks();
 
     const imageUrl = works[Object.keys(works)[Object.keys(works).length - 1]];
@@ -96,7 +92,6 @@ async function addWork() {
 }
 
 async function deleteWork(workID, dialogID) {
-    console.log(workID, dialogID)
     const request = await fetch("http://localhost:5678/api/works/" + workID, {
         method: "DELETE",
         headers: {

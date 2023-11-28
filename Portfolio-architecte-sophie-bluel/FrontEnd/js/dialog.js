@@ -3,46 +3,15 @@ async function openDialog() {
     showDeletingPage();
     dialog.showModal();
     await showArticles();
-    dialog.addEventListener('click', function (event) {
-        if (event.target === dialog) {
-            dialog.close();
-        }
-    });
+    dialog.addEventListener('click', handleDialogClick);
 }
 
-async function showArticles() {
-    const works = await getInstantWorks();
-    let dialogID = 0;
-    let posID = 1;
-    for (const workID in works) {
-        document.querySelector(".diag-works").appendChild(createArticles(works[workID], dialogID, workID, posID));
-        dialogID++;
-        posID++;
-        if (posID % 5 === 0) posID++
+function handleDialogClick(event) {
+    const dialog = document.getElementsByTagName("dialog")[0];
+    if (event.target === dialog) {
+        closeDialog();
+        dialog.removeEventListener('click', handleDialogClick);
     }
-}
-
-function createArticles(imageUrl, dialogID, workID, posID) {
-    const article = document.createElement("article");
-    const img = document.createElement("img");
-    const i = document.createElement("i");
-
-    article.style.gridArea = getPos(posID)
-
-    img.src = imageUrl
-
-    i.classList.add("fa-solid")
-    i.classList.add("fa-trash-can")
-    i.style.color = "white"
-    i.onclick = () => deleteWork(workID, dialogID);
-
-    article.appendChild(img);
-    article.appendChild(i);
-    return article;
-}
-
-function getPos(i) {
-    return (Math.floor(i / 5) + 1) + " / " + (i - 5 * Math.floor(i / 5));
 }
 
 function closeDialog() {
@@ -80,12 +49,10 @@ function updateImage(e) {
     if (e.files.length === 1) {
         const childrens = e.parentElement.children;
         for (const children of childrens) {
-            console.log(children)
             children.style.display = "none"
         }
         const [file] = e.files
         if (file) {
-            console.log(URL.createObjectURL(file))
             e.parentElement.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")"
         }
         updateDialogButton()
