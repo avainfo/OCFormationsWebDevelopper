@@ -32,6 +32,10 @@ async function showAddingPage() {
     dialog.children[0].style.display = "none";
     dialog.children[1].style.display = "unset";
 
+    catInput.innerHTML = ""
+    const option = document.createElement("option");
+    catInput.appendChild(option);
+
     const categories = await fetch('http://localhost:5678/api/categories')
         .then((resp) => resp.json());
 
