@@ -1,5 +1,10 @@
+const dialog = document.querySelector("dialog");
+const diagWorks = document.querySelector(".diag-works");
+const catInput = document.getElementById("cat");
+const titleInput = document.getElementById("title");
+const inputFile = document.querySelector(".input > input");
+
 async function openDialog() {
-    const dialog = document.getElementsByTagName("dialog")[0];
     showDeletingPage();
     dialog.showModal();
     await showArticles();
@@ -7,7 +12,6 @@ async function openDialog() {
 }
 
 function handleDialogClick(event) {
-    const dialog = document.getElementsByTagName("dialog")[0];
     if (event.target === dialog) {
         closeDialog();
         dialog.removeEventListener('click', handleDialogClick);
@@ -15,30 +19,28 @@ function handleDialogClick(event) {
 }
 
 function closeDialog() {
-    document.querySelector(".diag-works").innerHTML = '';
-    document.querySelector("dialog").close()
-}
-
-async function showAddingPage() {
-    document.querySelector("dialog").children[0].style.display = "none";
-    document.querySelector("dialog").children[1].style.display = "unset";
-
-
-    const categories = await fetch('http://localhost:5678/api/categories')
-        .then((resp) => resp.text())
-        .then((json) => JSON.parse(json));
-    for (const key of categories) {
-        const option = document.createElement("option");
-        option.setAttribute("value", key["name"]);
-        option.textContent = key["name"];
-        document.getElementById("cat").appendChild(option);
-    }
+    diagWorks.innerHTML = '';
+    dialog.close();
 }
 
 function showDeletingPage() {
-    document.querySelector("dialog").children[1].style.display = "none";
-    document.querySelector("dialog").children[0].style.display = "flex";
+    dialog.children[1].style.display = "none";
+    dialog.children[0].style.display = "flex";
+}
 
+async function showAddingPage() {
+    dialog.children[0].style.display = "none";
+    dialog.children[1].style.display = "unset";
+
+    const categories = await fetch('http://localhost:5678/api/categories')
+        .then((resp) => resp.json());
+
+    categories.forEach((key) => {
+        const option = document.createElement("option");
+        option.value = key.name;
+        option.textContent = key.name;
+        catInput.appendChild(option);
+    });
 }
 
 function openInput() {
@@ -48,26 +50,23 @@ function openInput() {
 function updateImage(e) {
     if (e.files.length === 1) {
         const childrens = e.parentElement.children;
-        for (const children of childrens) {
-            children.style.display = "none"
+        for (const child of childrens) {
+            child.style.display = "none";
         }
-        const [file] = e.files
+        const [file] = e.files;
         if (file) {
-            e.parentElement.style.backgroundImage = "url(" + URL.createObjectURL(file) + ")"
+            e.parentElement.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
         }
-        updateDialogButton()
+        updateDialogButton();
     }
 }
 
 function updateDialogButton() {
-    const input = document.querySelector(".input > input").files.length === 1;
-    const title = document.getElementById("title").value !== "";
-    const cat = document.getElementById("cat").value !== "";
+    const input = inputFile.files.length === 1;
+    const title = titleInput.value.trim() !== "";
+    const cat = catInput.value.trim() !== "";
 
-    if (input + title + cat === 3) {
-        const dialog = document.getElementsByTagName("dialog")[0];
-        const form = dialog.children[1].children[1];
-        const button = form.getElementsByTagName("button")[0];
-        button.disabled = false;
-    }
+    const form = dialog.children[1].children[1];
+    const button = form.querySelector("button");
+    button.disabled = !(input && title && cat);
 }
