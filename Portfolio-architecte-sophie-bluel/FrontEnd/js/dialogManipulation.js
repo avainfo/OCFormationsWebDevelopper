@@ -4,33 +4,36 @@ async function showArticles() {
     const works = await getInstantWorks();
     let dialogID = 0;
     let posID = 1;
+
     for (const workID in works) {
-        document.querySelector(".diag-works").appendChild(createArticles(works[workID], dialogID, workID, posID));
+        document.querySelector(".diag-works").appendChild(createArticle(works[workID], dialogID, workID, posID));
         dialogID++;
         posID++;
         if (posID % MAX_POSITION === 0) posID++;
     }
 }
 
-function createArticles(imageUrl, dialogID, workID, posID) {
+function createArticle(imageUrl, dialogID, workID, posID) {
     const article = document.createElement("article");
     const img = document.createElement("img");
-    const i = document.createElement("i");
+    const trashIcon = document.createElement("i");
 
-    article.style.gridArea = getPos(posID)
+    article.style.gridArea = getPos(posID);
+    img.src = imageUrl;
 
-    img.src = imageUrl
-
-    i.classList.add("fa-solid")
-    i.classList.add("fa-trash-can")
-    i.style.color = "white"
-    i.onclick = () => deleteWork(workID, dialogID);
+    trashIcon.classList.add("fa-solid", "fa-trash-can");
+    trashIcon.style.color = "white";
+    trashIcon.onclick = () => deleteWork(workID, dialogID);
 
     article.appendChild(img);
-    article.appendChild(i);
+    article.appendChild(trashIcon);
     return article;
 }
 
 function getPos(i) {
-    return (Math.floor(i / 5) + 1) + " / " + (i - 5 * Math.floor(i / 5));
+    return `${Math.floor(i / MAX_POSITION) + 1} / ${i - MAX_POSITION * Math.floor(i / MAX_POSITION)}`;
+}
+
+function updatePosID(posID) {
+    return posID % MAX_POSITION === 0 ? posID + 2 : posID + 1;
 }

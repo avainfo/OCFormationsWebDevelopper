@@ -1,8 +1,4 @@
-const dialog = document.querySelector("dialog");
-const diagWorks = document.querySelector(".diag-works");
-const catInput = document.getElementById("cat");
-const titleInput = document.getElementById("title");
-const inputFile = document.querySelector(".input > input");
+
 
 async function openDialog() {
     showDeletingPage();
