@@ -42,13 +42,13 @@ async function showAddingPage() {
 }
 
 function openInput() {
-    document.querySelector(".input").children[0].click();
+    document.getElementsByClassName("input")[0].children[0].click();
 }
 
 function updateImage(e) {
     if (e.files.length === 1) {
-        const childrens = e.parentElement.children;
-        for (const child of childrens) {
+        const children = e.parentElement.children;
+        for (const child of children) {
             child.style.display = "none";
         }
         const [file] = e.files;
@@ -65,6 +65,6 @@ function updateDialogButton() {
     const cat = catInput.value.trim() !== "";
 
     const form = dialog.children[1].children[1];
-    const button = form.querySelector("button");
+    const button = form.getElementsByTagName("button")[0];
     button.disabled = !(input && title && cat);
 }

@@ -7,7 +7,7 @@ async function getWorks() {
     const response = await request.text();
     const jsonResp = JSON.parse(response);
     for (const k of jsonResp) {
-        document.querySelector(".gallery").appendChild(createFigure(k["title"], k["imageUrl"]))
+        document.getElementsByClassName("gallery")[0].appendChild(createFigure(k["title"], k["imageUrl"]))
         await new Promise(r => setTimeout(r, 100));
         document.querySelector(".gallery figure:last-child").style.opacity = "1";
     }
@@ -44,7 +44,7 @@ function createFigure(name, imgUrl, opacity = 0) {
 }
 
 async function filterFigures(categoryID) {
-    const galleryChildren = document.querySelector(".gallery").children;
+    const galleryChildren = document.getElementsByClassName(".gallery")[0].children;
     const works = await fetch("http://localhost:5678/api/works")
         .then(response => response.text())
         .then((json) => JSON.parse(json));

@@ -6,7 +6,7 @@ async function showArticles() {
     let posID = 1;
 
     for (const workID in works) {
-        document.querySelector(".diag-works").appendChild(createArticle(works[workID], dialogID, workID, posID));
+        document.getElementsByClassName("diag-works")[0].appendChild(createArticle(works[workID], dialogID, workID, posID));
         dialogID++;
         posID++;
         if (posID % MAX_POSITION === 0) posID++;
