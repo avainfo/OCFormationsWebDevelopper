@@ -1,62 +1,57 @@
 async function loadFilters() {
     const filters = document.getElementById("filters");
-    if(sessionStorage.getItem("logged") !== "1") {
-        const request = await fetch('http://localhost:5678/api/categories');
 
-        let categories = ""
-        await request.text().then((v) => {
-            categories = JSON.parse(v);
-        });
+    if (!document.cookie.includes("token")) {
+        try {
+            const categories = await fetch('http://localhost:5678/api/categories')
+                .then((response) => response.json());
 
-        const cats = ["Tous"]
+            const cats = ["Tous", ...categories.map(category => category.name)];
 
-        for(let i = 0; i < categories.length; i++) {
-            cats.push(categories[i]["name"]);
-        }
+            cats.forEach((cat, index) => {
+                filters.appendChild(createFilter(cat, index));
+            });
 
-        for(let cat of cats) {
-            filters.appendChild(createFilter(cat));
-        }
+            setActiveFilter(0);
 
-        setActiveFilter(0);
-
-        for(let i = 0; i < filters.children.length; i++) {
-            filters.children[i].onclick = () => {
-                changeFilter(i);
-                filterFigures(i);
-            }
+            filters.addEventListener('click', event => {
+                const index = Array.from(filters.children).indexOf(event.target);
+                if (index !== -1) {
+                    changeFilter(index);
+                    filterFigures(index);
+                }
+            });
+        } catch (error) {
+            console.error(error)
         }
     } else {
         filters.style.display = "none";
     }
 }
 
-function createFilter(name) {
+function createFilter(name, index) {
     const filter = document.createElement("div");
     const filterText = document.createElement("p");
     filterText.textContent = name;
     filter.appendChild(filterText);
+    filter.addEventListener('click', () => changeFilter(index));
     return filter;
 }
 
-function changeFilter(i) {
+function changeFilter(index) {
     const filters = document.getElementById("filters").children;
-    if(i !== getActiveFilter()) {
+    if (index !== getActiveFilter()) {
         filters[getActiveFilter()].classList.remove("active");
-        setActiveFilter(i)
+        setActiveFilter(index);
     }
 }
 
 function getActiveFilter() {
     const filters = document.getElementById("filters").children;
-    for(let i = 0; i < filters.length; i++) {
-        if(filters[i].classList.contains("active")) {
-            return i;
-        }
-    }
+    return Array.from(filters).findIndex(filter => filter.classList.contains("active"));
 }
 
-function setActiveFilter(i) {
+function setActiveFilter(index) {
     const filters = document.getElementById("filters").children;
-    filters[i].classList.add("active");
+    filters[index].classList.add("active");
 }
