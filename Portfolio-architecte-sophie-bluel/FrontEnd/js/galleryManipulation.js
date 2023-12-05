@@ -96,15 +96,22 @@ async function addWork() {
 }
 
 async function deleteWork(workID, dialogID) {
-    const request = await fetch("http://localhost:5678/api/works/" + workID, {
-        method: "DELETE",
-        headers: {
-            'Accept': '*/*',
-            'Authorization': "Bearer " + document.cookie.replace("token=", "")
-        },
-    });
-    document.getElementsByClassName("diag-works")[0].children[dialogID].innerHTML = ""
-    await showArticles();
-    document.getElementsByClassName("gallery")[0].children[dialogID].remove();
-    document.getElementsByTagName("dialog")[0].close();
+    if(window.confirm("Etes vous sur ?")) {
+        await fetch("http://localhost:5678/api/works/" + workID, {
+            method: "DELETE",
+            headers: {
+                'Accept': '*/*',
+                'Authorization': "Bearer " + document.cookie.replace("token=", "")
+            },
+        }).then(async resp => {
+            console.log(resp.status);
+            if (resp.status === 204) {
+                document.getElementsByClassName("diag-works")[0].children[dialogID].innerHTML = ""
+                await showArticles();
+                document.getElementsByClassName("gallery")[0].children[dialogID].remove();
+                document.getElementsByTagName("dialog")[0].close();
+            }
+        });
+    }
+
 }
