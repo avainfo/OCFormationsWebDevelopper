@@ -1,40 +1,41 @@
 async function loadFilters() {
     const filters = document.getElementById("filters");
-
     if (!document.cookie.includes("token")) {
-        try {
-            const categories = await fetch('http://localhost:5678/api/categories')
-                .then((response) => response.json());
+        const request = await fetch('http://localhost:5678/api/categories');
 
-            const cats = ["Tous", ...categories.map(category => category.name)];
+        let categories = ""
+        await request.text().then((v) => {
+            categories = JSON.parse(v);
+        });
 
-            cats.forEach((cat, index) => {
-                filters.appendChild(createFilter(cat, index));
-            });
+        const cats = ["Tous"]
 
-            setActiveFilter(0);
+        for (let i = 0; i < categories.length; i++) {
+            cats.push(categories[i]["name"]);
+        }
 
-            filters.addEventListener('click', event => {
-                const index = Array.from(filters.children).indexOf(event.target);
-                if (index !== -1) {
-                    changeFilter(index);
-                    filterFigures(index);
-                }
-            });
-        } catch (error) {
-            console.error(error)
+        for (let cat of cats) {
+            filters.appendChild(createFilter(cat));
+        }
+
+        setActiveFilter(0);
+
+        for (let i = 0; i < filters.children.length; i++) {
+            filters.children[i].onclick = () => {
+                changeFilter(i);
+                filterFigures(i);
+            }
         }
     } else {
         filters.style.display = "none";
     }
 }
 
-function createFilter(name, index) {
+function createFilter(name) {
     const filter = document.createElement("div");
     const filterText = document.createElement("p");
     filterText.textContent = name;
     filter.appendChild(filterText);
-    filter.addEventListener('click', () => changeFilter(index));
     return filter;
 }
 
