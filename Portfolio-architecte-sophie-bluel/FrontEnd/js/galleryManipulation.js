@@ -1,27 +1,27 @@
 async function loadWorks() {
-    await getWorks();
-}
-
-async function getWorks() {
     const request = await fetch("http://localhost:5678/api/works");
     const response = await request.text();
     const jsonResp = JSON.parse(response);
-    for (const k of jsonResp) {
-        document.getElementsByClassName("gallery")[0].appendChild(createFigure(k["title"], k["imageUrl"]))
+    for (const work of jsonResp) {
+        document.getElementsByClassName("gallery")[0].appendChild(createFigure(work["title"], work["imageUrl"]))
         await new Promise(r => setTimeout(r, 100));
         document.querySelector(".gallery figure:last-child").style.opacity = "1";
     }
 }
 
 async function getInstantWorks() {
-    const request = await fetch("http://localhost:5678/api/works");
-    const response = await request.text();
-    const jsonResp = JSON.parse(response);
-    const arr = {};
-    for (const k of jsonResp) {
-        arr[k["id"]] = k["imageUrl"];
+    try {
+        const request = await fetch("http://localhost:5678/api/works");
+        const response = await request.text();
+        const jsonResp = JSON.parse(response);
+        const arr = {};
+        for (const work of jsonResp) {
+            arr[work["id"]] = work["imageUrl"];
+        }
+        return arr;
+    } catch (error) {
+        return {};
     }
-    return arr;
 }
 
 
@@ -44,18 +44,22 @@ function createFigure(name, imgUrl, opacity = 0) {
 }
 
 async function filterFigures(categoryID) {
-    const galleryChildren = document.getElementsByClassName(".gallery")[0].children;
-    const works = await fetch("http://localhost:5678/api/works")
-        .then(response => response.text())
-        .then((json) => JSON.parse(json));
-    let figureID = 0;
-    for (let workID in works) {
-        if (categoryID !== 0 && works[workID]['categoryId'] !== categoryID) {
-            galleryChildren[figureID].style.display = "none"
-        } else {
-            galleryChildren[figureID].style.display = "block"
+    const galleryChildren = document.getElementsByClassName("gallery")[0].children;
+    try {
+        const works = await fetch("http://localhost:5678/api/works")
+            .then(response => response.text())
+            .then((json) => JSON.parse(json));
+        let figureID = 0;
+        for (let workID in works) {
+            if (categoryID !== 0 && works[workID]['categoryId'] !== categoryID) {
+                galleryChildren[figureID].style.display = "none"
+            } else {
+                galleryChildren[figureID].style.display = "block"
+            }
+            figureID++;
         }
-        figureID++;
+    } catch (error) {
+        console.log(error);
     }
 }
 
