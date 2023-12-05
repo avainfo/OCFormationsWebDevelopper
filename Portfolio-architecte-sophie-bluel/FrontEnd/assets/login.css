@@ -87,3 +87,16 @@ footer {
     flex-direction: row-reverse;
     padding: 20px 0;
 }
+
+dialog {
+    margin-top: 5vh;
+    border: solid 1px #EC6868;
+    background-color: #F3C8C7;
+    border-radius: 5px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition-duration: 3s;
+    transition-property: opacity;
+}
