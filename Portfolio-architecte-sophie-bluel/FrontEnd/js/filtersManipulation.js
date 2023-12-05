@@ -1,12 +1,10 @@
 async function loadFilters() {
     const filters = document.getElementById("filters");
     if (!document.cookie.includes("token")) {
-        const request = await fetch('http://localhost:5678/api/categories');
-
         let categories = ""
-        await request.text().then((v) => {
-            categories = JSON.parse(v);
-        });
+        categories = await fetch('http://localhost:5678/api/categories')
+            .then(resp => resp.json())
+            .catch(reason => "");
 
         const cats = ["Tous"]
 

@@ -1,7 +1,7 @@
 async function loadWorks() {
-    const request = await fetch("http://localhost:5678/api/works");
-    const response = await request.text();
-    const jsonResp = JSON.parse(response);
+    const jsonResp = await fetch("http://localhost:5678/api/works")
+        .then(resp => resp.json())
+        .catch(reason => "");
     for (const work of jsonResp) {
         document.getElementsByClassName("gallery")[0].appendChild(createFigure(work["title"], work["imageUrl"]))
         await new Promise(r => setTimeout(r, 100));
