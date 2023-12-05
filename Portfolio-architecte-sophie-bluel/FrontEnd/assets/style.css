@@ -235,3 +235,7 @@ footer nav ul {
     margin: 2em
 }
 
+#contact form input {
+    margin-left: 0;
+    margin-right: 0;
+}
