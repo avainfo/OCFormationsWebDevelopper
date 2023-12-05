@@ -43,7 +43,17 @@
 </main>
 <div></div>
 <footer>
-    <a href="#">Mentions légales</a>
+    <nav>
+        <ul>
+            <li>Mentions légales</li>
+        </ul>
+    </nav>
 </footer>
+<dialog open>
+    <p>Mauvais email ou mot de passe</p>
+    <form method="dialog">
+        <button onclick="this.parentElement.parentElement.display='none'">OK</button>
+    </form>
+</dialog>
 </body>
 </html>
