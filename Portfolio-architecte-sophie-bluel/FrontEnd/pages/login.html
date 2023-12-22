@@ -12,7 +12,7 @@
     <title>AvA Quizz</title>
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="../assets/login.css">
-    <script src="../js/login.js"></script>
+    <script async src="../js/login.js"></script>
 </head>
 <body>
 <header>
@@ -37,7 +37,7 @@
             <label for="password">Mot de passe</label>
             <input type="password" id="password">
         </div>
-        <input type="button" value="Se Connecter" onclick="login()">
+        <input type="button" value="Se Connecter">
         <a href="#">Mot de passe oublié</a>
     </form>
 </main>
@@ -52,7 +52,7 @@
 <dialog>
     <p>Mauvais email ou mot de passe</p>
     <form method="dialog">
-        <button onclick="this.parentElement.parentElement.style.display='none'">OK</button>
+        <button>OK</button>
     </form>
 </dialog>
 </body>

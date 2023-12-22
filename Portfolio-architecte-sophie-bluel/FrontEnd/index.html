@@ -23,11 +23,11 @@
     <script async src="js/galleryManipulation.js"></script>
     <script async src="js/dialog.js"></script>
 </head>
-<body onload="load()">
+<body>
 <div class="edition">
     <div>
-        <i class="fa-regular fa-pen-to-square" onclick="closeEditing()"></i>
-        <h2 onclick="closeEditing()">Mode édition</h2>
+        <i class="fa-regular fa-pen-to-square"></i>
+        <h2>Mode édition</h2>
     </div>
 </div>
 <header>
@@ -62,12 +62,12 @@
             <div class="spacer"></div>
             <h2>Mes Projets</h2>
             <div class="edit">
-                <i class="fa-regular fa-pen-to-square" onclick="openDialog()"></i>
-                <h3 onclick="openDialog()">modifier</h3>
+                <i class="fa-regular fa-pen-to-square"></i>
+                <h3>modifier</h3>
             </div>
         </div>
         <div id="filters"></div>
-        <div class="gallery"></div>
+        <div class= "gallery"></div>
     </section>
     <section id="contact">
         <h2>Contact</h2>
@@ -91,42 +91,42 @@
         </ul>
     </nav>
 </footer>
-<dialog onclose="closeDialog()">
+<dialog>
     <section>
         <div>
-            <button onclick="closeDialog()">✖</button>
+            <button>✖</button>
             <p>Galerie Photo</p>
         </div>
         <div class="diag-works">
         </div>
         <div class="diag-footer">
             <div class="spacer"></div>
-            <button type="button" onclick="showAddingPage()">Ajouter une photo</button>
+            <button type="button">Ajouter une photo</button>
         </div>
     </section>
     <section>
         <div>
-            <i class="fa-solid fa-arrow-left" style="color: #000000;" onclick="showDeletingPage()"></i>
+            <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
             <p>Ajout Photo</p>
-            <button onclick="closeDialog()">✖</button>
+            <button>✖</button>
         </div>
         <form>
-            <div class="input" onclick="openInput()">
-                <input type="file" name="" id="file" accept="image/png, image/jpeg" onchange="updateImage(this)">
+            <div class="input">
+                <input type="file" name="" id="file" accept="image/png, image/jpeg">
                 <i class="fa-regular fa-image" style="color: #b9c5cc;"></i>
                 <h3>+ Ajouter photo</h3>
                 <h4>jpg, png : 4mo max</h4>
             </div>
             <label for="title">Titre</label>
-            <input type="text" id="title" oninput="updateDialogButton()">
+            <input type="text" id="title">
             <label for="cat">Catégorie</label>
-            <select name="" id="cat" onchange="updateDialogButton()">
+            <select name="" id="cat">
                 <option value=""></option>
             </select>
 
             <div class="spacer"></div>
 
-            <button type="button" disabled onclick="addWork()">Valider</button>
+            <button type="button" disabled>Valider</button>
         </form>
     </section>
 </dialog>

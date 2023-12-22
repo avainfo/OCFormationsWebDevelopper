@@ -1,3 +1,10 @@
+document.body.onload = () => loadLogin();
+
+function loadLogin() {
+    document.querySelector("main input[type=button]").onclick = () => login();
+    document.querySelector("dialog button").onclick = () => document.getElementsByTagName("dialog")[0].style.display="none";
+}
+
 async function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -33,8 +40,8 @@ async function login() {
 
 function showDialog() {
     const anim = [
-        { opacity: "0" },
-        { opacity: "1" },
+        {opacity: "0"},
+        {opacity: "1"},
     ];
 
     const animTiming = {
